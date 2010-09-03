@@ -1,0 +1,22 @@
+{ "name" : "RDX"
+, "description" : "A Javascript ORM"
+, "version" : "0.0.0"
+, "maintainers" :
+  [ { "name": "Surendra Singhi"
+    , "email": "ssinghi@kreeti.com"
+    }
+  ]
+, "contributors" :
+  [ { "name": "Surendra Singhi"
+    , "email": "ssinghi@kreeti.com",
+    }
+  ]
+, "licenses" : [ { "type" : "MIT" } ]
+, "repositories" :
+  [ { "type" : "git"
+    , "url" : "http://github.com/kreetitech/easydb"
+    }
+  ]
+, "main" : "./index"
+, "engines" : { "node" : ">=0.2.0" }
+}
