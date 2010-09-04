@@ -3,26 +3,25 @@ var Record = require('./record').Record;
 var Field = require('./field').Field;
 var Utils = require('./utils').Utils;
 
-var table_function = function() {  return function(arg) { if(arg) {  Utils.extend(this, arg); }; };};
-
-
 var Table = exports.Table = Table = function(connection_pool, table_name) {
   var me = this;
-  this.tableName = table_name;
+  this.table_name = table_name;
   this.connectionPool = connection_pool;
-  this.primaryKey = 'id';
+  this.primary_key = 'id';
   this.fields = this.connectionPool.getConnection().querySync('show fields from ' + table_name).fetchAllSync().map(function(f){
       return new Field(me, f);});
 
   this.relationships = [];
-
-  var func = table_function;
+  var func = new Function(arg) {
+    if(arg) {
+      Utils.extend(this, arg);
+    }
+  };
   Utils.extend(func.prototype, Record);
 
   func.__proto__ = this;
   return func;
 };
-
 
 Table.prototype.query = function() {
   var q = new Query();
@@ -33,19 +32,20 @@ Table.prototype.query = function() {
   return q;
 }
 
-
-var relationship_function = function(t) { return function() { t._chained_object = this;  return t; }};
-
-var ToMany = function(primary_table, primary_key, join_table, join_key ){
+ToMany = function(primary_table, primary_key, join_table, join_key ){
   this.primary_table = primary_table;
   this.primary_key = primary_key
   this.join_table = this.join_table;
   this.join_key = this.join_key;
 
   var t = Utils.clone(join_table);
-  t._chain = this;
+  var t._chain = this;
 
-  return relationship_function(t);
+  var f = new function() {
+    t._chained_object = this;
+    return t;
+  }
+  return f;
 };
 
 ToMany.prototype.query = function(chained_object) {
@@ -57,4 +57,4 @@ ToMany.prototype.query = function(chained_object) {
 	       this.join_table.table_name + "." + this.join_table.join_key];
   }
   return q;
-};
+}

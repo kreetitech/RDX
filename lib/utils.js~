@@ -8,7 +8,7 @@ Utils.clone = function (obj) {
 };
 
 Utils.extend = function(receiver, object) {
-  for(var f in object) {
+  for(var f in arg) {
     receiver[f] = object[f];
   }
 }

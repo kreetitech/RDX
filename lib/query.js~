@@ -115,25 +115,25 @@ Query.prototype.count = function (field) {
 
 Query.prototype.sum = function (field) {
   var q = Utils.clone(this);
-  q._select = q._select.concat(['sum(' + ((field instanceof Field) ? field.toSql() : field.toString()) + ')']);
+  q._select = q._select.concat(['sum(' + ((field instanceof Field) ? field.toSql() + field.toString()) + ')']);
   return q;
 }
 
 Query.prototype.min = function (field) {
   var q = Utils.clone(this);
-  q._select = q._select.concat(['min(' + ((field instanceof Field) ? field.toSql() : field.toString()) + ')']);
+  q._select = q._select.concat(['min(' + ((field instanceof Field) ? field.toSql() + field.toString()) + ')']);
   return q;
 }
 
 Query.prototype.max = function (field) {
   var q = Utils.clone(this);
-  q._select = q._select.concat(['max(' + ((field instanceof Field) ? field.toSql() : field.toString()) + ')']);
+  q._select = q._select.concat(['max(' + ((field instanceof Field) ? field.toSql() + field.toString()) + ')']);
   return q;
 }
 
 Query.prototype.avg = function (field) {
   var q = Utils.clone(this);
-  q._select = q._select.concat(['avg(' + ((field instanceof Field) ? field.toSql() : field.toString()) + ')']);
+  q._select = q._select.concat(['avg(' + ((field instanceof Field) ? field.toSql() + field.toString()) + ')']);
   return q;
 }
 
