@@ -1,5 +1,5 @@
 exports.cfg = {
-  mysql: require('node-mysql-libmysqlclient/mysql-libmysqlclient.js'),
+  mysql: require('./../../../node-mysql-libmysqlclient/mysql-libmysqlclient.js'),
   host: "localhost",
   user: "root",
   password: "Mapinkbo",
