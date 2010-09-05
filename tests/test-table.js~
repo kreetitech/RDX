@@ -1,3 +1,0 @@
-
-var cfg = require("./config").cfg;
-var Table = require('table');
