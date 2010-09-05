@@ -12,35 +12,35 @@ var ToMany = RDX.ToMany;
 var BelongsTo = RDX.BelongsTo;
 
 var cp = new ConnectionPool(cfg);
-var users = new Table(cp, 'users');
-var collections = new Table(cp, 'collections');
-var items = new Table(cp, 'items');
+var User = new Table(cp, 'users');
+var Collection = new Table(cp, 'collections');
+var Item = new Table(cp, 'items');
 
-users.collections = users.prototype.collections = new ToMany(users, 'id', collections, 'user_id');
+User.collections = User.prototype.collections = new ToMany(User, 'id', Collection, 'user_id');
 
-collections.items  = new ToMany(collections, 'id', items, 'collection_id');
+Collection.items  = new ToMany(Collection, 'id', Item, 'collection_id');
 
-collections.prototype.user = collections.user = new BelongsTo(collections, 'user_id', users, 'id');
+Collection.prototype.user = Collection.user = new BelongsTo(Collection, 'user_id', User, 'id');
 
-q = users.query().where('id = 675011 ');
+q = User.query().where('id = 675011 ');
 
 x = q.executeSync()[0];
 
 q = x.collections().query();
 console.log(q.toSql());
 
-q = users.collections().query();
+q = User.collections().query();
 console.log(q.toSql());
 
 c = q.take(1).executeSync()[0];
-console.log(c instanceof collections);
+console.log(c instanceof Collection);
 
 console.log(c.user().query().toSql());
 
-q = collections.user().query();
+q = Collection.user().query();
 console.log(q.toSql());
 
-q = collections.items().query();
+q = Collection.items().query();
 console.log(q.toSql());
 
 
