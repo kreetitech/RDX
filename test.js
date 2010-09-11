@@ -19,4 +19,4 @@ catch(e) {
 }
 
 process.chdir(__dirname);
-testrunner.run(['tests']);
+testrunner.run(['tests/test-table.js']);

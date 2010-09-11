@@ -3,6 +3,6 @@ exports.cfg = {
   host: "localhost",
   user: "root",
   password: "Mapinkbo",
-  database: "tastebook_development",
+  database: "test",
 };
 
