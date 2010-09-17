@@ -20,3 +20,5 @@ catch(e) {
 
 process.chdir(__dirname);
 testrunner.run(['tests/test-table.js']);
+//testrunner.run(['tests/test-field.js']);
+testrunner.run(['tests/test-query.js'])

@@ -46,4 +46,13 @@ CREATE TABLE `items` (
   CONSTRAINT `FK5FDE7C08FA3B252` FOREIGN KEY (`collection_id`) REFERENCES `collections` (`id`),
   CONSTRAINT `fk_items_collection_id_collections_id` FOREIGN KEY (`collection_id`) REFERENCES `collections` (`id`) ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8;
-
+LOCK TABLE `users` WRITE;
+INSERT INTO `users` VALUES(1, 'sandip', 'mondal', 'sandip@kreeti.com', 1, null, null,2010-10-10,null,null,null,null,'smondal',null),(2, 'priyashree', 'dey', 'pdey@kreeti.com', 1, null, null,2010-10-10,null,null,null,null,'pdey',null),(3, 'Rajib', 'dey', 'rdey@kreeti.com', 2, null, null,2010-10-10,null,null,null,null,'rdey',null),(4, 'surendra', 'singhi', 'ssinghi@kreeti.com', 1, null, null,2010-10-10,null,null,null,null,'ssingji',null),(5, 'santanu', 'karmakar', 'skarmakar@kreeti.com', 2, null, null,2010-10-10,null,null,null,null,'skarmakar',null) ;
+UNLOCK TABLES;
+LOCK TABLE `collections` WRITE;
+INSERT INTO `collections` VALUES(1, 1, 'tastebook',2010-10-10,null,1),(2, 2, 'Family Book',2010-10-10,null,2),(3, 3, 'Family Book',2010-10-10,null,2);
+UNLOCK TABLES;
+UNLOCK TABLES;
+LOCK TABLE `items` WRITE;
+INSERT INTO `items` VALUES(1, 1,2010-10-10,null),(2, 2,2010-10-10,null),(3, 2,2010-10-10,null),(4, 3,2010-10-10,null),(5, 4,2010-10-10,null);
+UNLOCK TABLES;
