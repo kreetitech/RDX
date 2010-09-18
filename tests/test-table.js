@@ -19,6 +19,12 @@ exports.testTableQueryObject = function(test) {
   test.done();
 };
 
+exports.testTableToString = function(test) {
+  test.expect(1);
+  test.ok(User.toString(), "<Table:{users}>", "Returns correct string representation.");
+  test.done();
+};
+
 exports.testTableNewObjectConstruction = function(test) {
   test.expect(2);
   var obj = new User();
