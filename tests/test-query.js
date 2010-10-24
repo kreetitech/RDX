@@ -1,8 +1,9 @@
 var Query = require('query').Query;
+var Field = require('field').Field;
 
 var Collection = require('./collection').Collection;
-
 var User = require('./user').User;
+
 
 exports.testQueryWhere = function(test) {
   test.expect(3);
@@ -30,29 +31,28 @@ exports.testQueryLimit = function(test) {
 exports.testQueryGroup = function(test) {
   test.expect(4)
   test.equals(User.query().group('user_type').executeSync()[0].id, 1, "Returns value with correct matching value");
-  test.equals(User.query().group('salt').executeSync().length, "1", "Returns value with correct matching value");
-  test.equals(User.query().group('user_type').executeSync().length, "2", "Returns value with correct matching value");
-  test.equals(User.query().group('user_type').group('last_name').executeSync().length, "5", "Returns value with correct matching value");
+  test.equals(User.query().group('salt').executeSync().length, 1, "Returns value with correct matching value");
+  test.equals(User.query().group('user_type').executeSync().length, 2, "Returns value with correct matching value");
+  test.equals(User.query().group('user_type').group('last_name').executeSync().length, 4, "Returns value with correct matching value");
   test.done();
 }
 
 exports.testQuerySum = function(test) {
   test.expect(1);
-  test.equals(Collection.query().sum('items_count').executeSync()[0], 5, "Returns value with correct matching value");
+  test.equals(Collection.query().select(new Field(null,'items_count').sum().as('items_count')).executeSync()[0].items_count, 5, "Returns value with correct matching value");
   test.done();
 }
 
 exports.testQueryCount = function(test) {
-  test.expect(3);
-  test.equals(User.query().count('*').executeSync()[0], 5, "Returns value with correct matching value" ); // pending
-  test.equals(User.query().count('*').where('user_type=1').executeSync(), 3, "Returns value with correct matching value");
-  test.equals(User.query().count(1).executeSync()[0].count(1), 5, "Returns value with correct matching value");
+  test.expect(2);
+  test.equals(User.query().select(new Field().count().as('count')).executeSync()[0].count, 5, "Returns value with correct matching value" );
+  test.equals(User.query().select(new Field().count().as('count')).where('user_type=1').executeSync()[0].count, 3, "Returns value with correct matching value");
   test.done();
 }
 
 exports.testQueryMin = function(test) {
   test.expect(1);
-  test.equals(Collection.query().min('items_count').executeSync()[0], 1, "Returns value with correct matching value");
+  test.equals(Collection.query().select(new Field(null,'items_count').min().as('min')).executeSync()[0].min, 1, "Returns value with correct matching value");
   test.done();
 }
 
