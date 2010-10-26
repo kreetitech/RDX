@@ -14,8 +14,47 @@ exports.testFieldSum = function(test) {
   test.expect(3);
   var f = User.fields[0].sum();
   test.notEqual(User.fields[0], f, "Field is cloned");
-  console.log(f._apply);
   test.ok(f._apply.indexOf('sum') != -1, "Operator is included");
   test.equals(f.toSql(), 'sum(users.id)', "Field to Sql is correct");
   test.done();
 }
+
+exports.testFieldMax = function(test) {
+  test.expect(3);
+  var f = User.fields[0].max();
+  test.notEqual(User.fields[0], f, "Field is cloned");
+  test.ok(f._apply.indexOf('max') != -1, "Operator is included");
+  test.equals(f.toSql(), 'max(users.id)', "Field to Sql is correct");
+  test.done();
+}
+
+exports.testFieldMin = function(test) {
+  test.expect(3);
+  var f = User.fields[0].min();
+  test.notEqual(User.fields[0], f, "Field is cloned");
+  test.ok(f._apply.indexOf('min') != -1, "Operator is included");
+  test.equals(f.toSql(), 'min(users.id)', "Field to Sql is correct");
+  test.done();
+}
+
+
+exports.testFieldCount = function(test) {
+  test.expect(3);
+  var f = User.fields[0].count();
+  test.notEqual(User.fields[0], f, "Field is cloned");
+  test.ok(f._apply.indexOf('count') != -1, "Operator is included");
+  test.equals(f.toSql(), 'count(users.id)', "Field to Sql is correct");
+  test.done();
+}
+
+exports.testFieldAvg = function(test) {
+  test.expect(3);
+  var f = User.fields[0].avg();
+  test.notEqual(User.fields[0], f, "Field is cloned");
+  test.ok(f._apply.indexOf('avg') != -1, "Operator is included");
+  test.equals(f.toSql(), 'avg(users.id)', "Field to Sql is correct");
+  test.done();
+}
+
+
+
