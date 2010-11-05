@@ -4,9 +4,10 @@ var User = require('./user').User;
 var Collection = require('./collection').Collection;
 
 exports.testTableObjectCreation = function(test) {
-  test.expect(3);
+  test.expect(4);
   test.equals(User.tableName, "users", "The table name is stored correctly.");
-  test.equals(User.primaryKey, "id", "The default primary key is field: id.");
+  test.equals(User.primaryKey, User.fields["id"], "The default primary key field is: id.");
+  test.equals(User.primaryKey.name, "id", "The default primary key name is: id.");
   test.equals(User.fields.length, 14, "The field count is correct.");
 
   test.done();
