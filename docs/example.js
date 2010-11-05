@@ -26,7 +26,7 @@ q = User.query().where('id = 675011 ');
 
 x = q.executeSync()[0];
 
-q = x.collections().query();
+/* q = x.collections().query();
 console.log(q.toSql());
 
 q = User.collections().query();
@@ -47,3 +47,4 @@ console.log(q.toSql());
 q = x.collections().items().query();
 console.log(q.toSql());
 
+*/
