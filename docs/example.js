@@ -1,6 +1,8 @@
+__dirname = '.'
 require.paths.push(__dirname);
-require.paths.push(__dirname + '/..');
-require.paths.push(__dirname + '/../deps');
+//require.paths.push(__dirname + '/..');
+//require.paths.push(__dirname + '/../deps');
+require.paths.push(__dirname + '/deps');
 
 var RDX = require('index').RDX;
 var cfg = require("tests/fixtures/config").cfg;

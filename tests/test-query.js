@@ -5,12 +5,20 @@ var Collection = require('./collection').Collection;
 var User = require('./user').User;
 
 
-exports.testQueryWhere = function(test) {
+exports.testQueryWhereSync = function(test) {
   test.expect(3);
   test.equals(User.query().where('id = 1').executeSync()[0].id, 1, "Returns object with correct matching id.");
   test.equals(User.query().where("first_name = 'sandip'").executeSync()[0].first_name, "sandip", "Returns object with matching name");
   test.equals(User.query().where("first_name = 'sandip'").where("last_name='mondal'").executeSync()[0].first_name, "sandip","Return object with matching name");
   test.done();
+}
+
+exports.testQueryWhere = function(test) {
+  test.expect(3);
+    User.query().where('id = 1').execute(function(err, res) {test.equals(res[0].id, 1, "Returns object with correct matching id.");});
+  User.query().where("first_name = 'sandip'").execute(function(err, res) {test.equals(res[0].first_name, "sandip", "Returns object with matching name")});
+  User.query().where("first_name = 'sandip'").where("last_name='mondal'").execute(function(err, res) {test.equals(res[0].first_name, "sandip","Return object with matching name"); test.done();});
+
 }
 
 exports.testQuerySelect = function(test) {
