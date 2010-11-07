@@ -18,6 +18,10 @@ var User = new Table(cp, 'users');
 var Collection = new Table(cp, 'collections');
 var Item = new Table(cp, 'items');
 
+u = User.createSync({email: "a@b", user_type: 0})
+
+u = User.findSync(9); u.destroySync()
+
 User.collections = User.prototype.collections = new ToMany(User, 'id', Collection, 'user_id');
 
 Collection.items  = new ToMany(Collection, 'id', Item, 'collection_id');
