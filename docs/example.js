@@ -3,6 +3,7 @@ require.paths.push(__dirname);
 //require.paths.push(__dirname + '/..');
 //require.paths.push(__dirname + '/../deps');
 require.paths.push(__dirname + '/deps');
+require.paths.push(__dirname + '/lib');
 
 var RDX = require('index').RDX;
 var cfg = require("tests/fixtures/config").cfg;
@@ -18,9 +19,13 @@ var User = new Table(cp, 'users');
 var Collection = new Table(cp, 'collections');
 var Item = new Table(cp, 'items');
 
-u = User.createSync({email: "a@b", user_type: 0})
+User.toMany
+User.collections = User.prototype.collections = new ToMany(User, User.primaryKey, Collection, Collection.fields["user_id"]);
 
-u = User.findSync(9); u.destroySync()
+u = User.find("1", false)
+
+u = User.createSync({email: "a@b", user_type: 0})
+; u.destroySync()
 
 User.collections = User.prototype.collections = new ToMany(User, 'id', Collection, 'user_id');
 
