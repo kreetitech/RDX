@@ -19,15 +19,14 @@ var User = new Table(cp, 'users');
 var Collection = new Table(cp, 'collections');
 var Item = new Table(cp, 'items');
 
-User.toMany
-User.collections = User.prototype.collections = new ToMany(User, User.primaryKey, Collection, Collection.fields["user_id"]);
+User.toMany('collections', Collection, Collection.fields["user_id"]);
 
+Collection.belongsTo('user', Collection.fields["user_id"], User);
 u = User.find("1", false)
+u.collections.findOne(false).user.findOne(false).user.findOne(false)
 
 u = User.createSync({email: "a@b", user_type: 0})
 ; u.destroySync()
-
-User.collections = User.prototype.collections = new ToMany(User, 'id', Collection, 'user_id');
 
 Collection.items  = new ToMany(Collection, 'id', Item, 'collection_id');
 
