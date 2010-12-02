@@ -34,3 +34,43 @@ exports.testTableNewObjectConstruction = function(test) {
   test.done();
 };
 
+exports.testTableallSync = function(test) {
+  test.expect(2)
+  test.equals(User.all(false).length, 5, "Return length should be correct")
+  test.ok(User.all(false) instanceof Array, "Return length should be correct")
+  test.done();
+};
+
+exports.testTableall = function(test) {
+  test.expect(1);
+  User.all(function(err, res){test.ok(res instanceof Array, "correct"); test.done(); });
+};
+
+exports.testTablefindOneSync = function(test) {
+  test.expect(1);
+  test.equals(User.findOne(false).first_name, "sandip", "Return object with matching name")
+  test.done();
+};
+
+exports.testTablefindOne = function(test) {
+  test.expect(1);
+  User.findOne(function(err, res) {test.equals(res.first_name, "sandip", "Return object with matching name"); test.done(); });
+};
+
+exports.testTablefindSync = function(test) {
+  test.expect(4);
+  test.equals(User.find("1", false).first_name, "sandip", "Return object with matching name");
+  test.ok(User.find("1", false) instanceof Object, "Return an instance of Object");
+  test.equals(User.find(["1","2","3"], false)[2].id, 3, "Returns value with correct matching value");
+  test.ok(User.find(["1","2","3"], false) instanceof Array, "Return an instance of Array");
+  test.done();
+};
+
+exports.testTablefind = function(test) {
+  test.expect(2);
+  User.find("1", function(err, res){
+    test.equals(res.first_name, "sandip","Return object with matching name");
+    test.ok(res instanceof Object, "Return an instance of Object");
+    test.done()});
+};
+
