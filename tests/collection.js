@@ -6,4 +6,3 @@ var User = require('./user').User;
 var Collection = exports.Collection = new Table(cp, 'collections');
 
 Collection.toMany('items', Item, Item.fields["collection_id"]);
-console.log(Collection.items.query().toSql())
