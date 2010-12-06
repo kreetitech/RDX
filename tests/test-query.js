@@ -15,26 +15,37 @@ exports.testQueryWhereSync = function(test) {
 
 exports.testQueryWhere = function(test) {
   test.expect(3);
-    User.query().where('id = 1').execute(function(err, res) {test.equals(res[0].id, 1, "Returns object with correct matching id.");});
+  User.query().where('id = 1').execute(function(err, res) {test.equals(res[0].id, 1, "Returns object with correct matching id.");});
   User.query().where("first_name = 'sandip'").execute(function(err, res) {test.equals(res[0].first_name, "sandip", "Returns object with matching name")});
   User.query().where("first_name = 'sandip'").where("last_name='mondal'").execute(function(err, res) {test.equals(res[0].first_name, "sandip","Return object with matching name"); test.done();});
 
 }
 
-exports.testQuerySelect = function(test) {
+exports.testQuerySelectSync = function(test) {
   test.expect(2);
   test.equals(User.query().select('id').executeSync()[0].id, 1, "Returns value should be 1");
   test.equals(User.query().select('id').select('first_name').executeSync()[0].first_name, 'sandip',"Returns object with matching name");
   //  test.equals(User.query().group('user_type').executeSync()[0].id, "1", "value should be correct");
   test.done();
-}
+};
 
-exports.testQueryLimit = function(test) {
+exports.testQuerySelect = function(test){
+  test.expect(1);
+  User.query().select('id').execute( function(err, res){test.equals(res[0].id, 1, "Returns value should be correct"); test.done();});
+};
+
+exports.testQueryLimitSync = function(test) {
   test.expect(2)
   test.equals(User.query().take(2).executeSync()[0].id, 1, "Returns value should be correct");
   test.ok(User.query().take().executeSync(), "Should Return argument error");
   test.done();
-}
+};
+
+exports.testQueryLimit = function(test) {
+  test.expect(1);
+  User.query().take(1).execute(function(err, res) {test.equals(res[0].id, 1, "Returns value with correct matching value");
+  test.done();});
+};
 
 exports.testQueryGroup = function(test) {
   test.expect(4)
