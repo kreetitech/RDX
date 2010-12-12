@@ -1,8 +1,5 @@
-var RDX = exports.RDX = new Object(); 
-RDX.ConnectionPool = require('./lib/connection').ConnectionPool;
-RDX.Table = require('./lib/table').Table;
-RDX.Query = require('./lib/table').Query;
-RDX.ToMany = require('./lib/to_many').ToMany;
-RDX.BelongsTo = require('./lib/belongs_to').BelongsTo;
+var rdx = exports.rdx = new Object(); 
+rdx.ConnectionPool = require('./lib/connection').ConnectionPool;
+rdx.Model = require('./lib/table').Table;
 
 
