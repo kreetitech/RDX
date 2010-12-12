@@ -25,7 +25,7 @@ Collection.belongsTo('user', Collection.fields["user_id"], User);
 u = User.find("1", false)
 u.collections.findOne(false).user.findOne(false).user.findOne(false)
 
-u = User.createSync({email: "a@b", user_type: 0})
+u = User.create({email: "a@b", user_type: 0}, false)
 ; u.destroySync()
 
 Collection.items  = new ToMany(Collection, 'id', Item, 'collection_id');

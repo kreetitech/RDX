@@ -1,7 +1,16 @@
+var Table = require('table').Table;
 var Query = require('query').Query;
-
 var User = require('./user').User;
 var Collection = require('./collection').Collection;
+
+exports.testTableObject = function(test) {
+  test.expect(3);
+  test.ok(User instanceof Table, "User is an instance of Table Class.");
+  test.ok(User instanceof Query, "User is an instance of Query Class.");
+  test.equals(User.constructor, Table, "User constructor is Table class.");
+
+  test.done();
+};
 
 exports.testTableObjectCreation = function(test) {
   test.expect(4);
