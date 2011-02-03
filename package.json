@@ -20,8 +20,11 @@
     , "url" : "http://github.com/kreetitech/RDX.git"
     }
   ]
+, "dependencies" : {
+    "mysql-libmysqlclient": ">=1.1.x",
+  }
 , "main" : "./index"
 , "engines" : { "node" : ">=0.2.5" }
 , "scripts" :
-  {"test" : "node test.js"
+  {"test" : "node test.js" }
 }
