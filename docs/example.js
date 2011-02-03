@@ -9,15 +9,15 @@ var RDX = require('index').RDX;
 var cfg = require("tests/fixtures/config").cfg;
 
 var ConnectionPool = RDX.ConnectionPool;
-var Table = RDX.Table;
+var Model = RDX.Model;
 var Query = RDX.Query;
 var ToMany = RDX.ToMany;
 var BelongsTo = RDX.BelongsTo;
 
 var cp = new ConnectionPool(cfg);
-var User = new Table(cp, 'users');
-var Collection = new Table(cp, 'collections');
-var Item = new Table(cp, 'items');
+var User = new Model(cp, 'users');
+var Collection = new Model(cp, 'collections');
+var Item = new Model(cp, 'items');
 
 User.toMany('collections', Collection, Collection.fields["user_id"]);
 
