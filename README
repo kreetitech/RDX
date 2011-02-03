@@ -1,0 +1,57 @@
+RDX
+========
+
+A simple ORM for Node.js. 
+Currently only supports mysql-libmysqlclient: https://github.com/Sannis/node-mysql-libmysqlclient
+
+Usage
+-----
+
+Here is some example usage using the test database present in tests/fixtures/db_schema.sql:
+
+var rdx = require('rdx')
+var cfg = {  adapter: 'mysql-libmysqlclient',
+  host: "localhost",
+  database: "test",
+          };
+
+var cp = new rdx.ConnectionPool(cfg);
+var User = new rdx.Model(cp, 'users');
+var Collection = new rdx.Model(cp, 'collections');
+var Item = new rdx.Model(cp, 'items');
+
+User.toMany('collections', Collection, Collection.fields["user_id"]);
+Collection.belongsTo('user', Collection.fields["user_id"], User);
+Collection.toMany('items', Item, Item.fields['collection_id']);
+Item.belongsTo('collections',Item.fields["collection_id"], Collection);
+
+u = User.create({email: "a@b", user_type: 0}, false)
+u.destroySync()
+
+u = User.find("1", false)
+u.collections.findOne(false).user.findOne(false)
+u = User.where('id = 1').findOne(false);
+
+User.find("1", function(err, res) { console.log(res); });
+
+u.collections.where("name like '%book'").all(function(err, res) { console.log(res); })
+
+Installation
+------------
+Here is how you can install RDX:
+
+    npm install rdx
+
+Contributing
+------------
+
+Contributions to this project are most welcome, so feel free to fork, improve and submit pull requests.
+The test suite requires nodeunit https://github.com/caolan/nodeunit and can be run using the command
+ 
+     node test.js
+
+TODO
+------------
+ * Add tests for object creation, updation, deletion, etc.
+ * Better error handling
+ * SQL escaping, improve where clause

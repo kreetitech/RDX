@@ -10,41 +10,17 @@ var Collection = new rdx.Model(cp, 'collections');
 var Item = new rdx.Model(cp, 'items');
 
 User.toMany('collections', Collection, Collection.fields["user_id"]);
-
 Collection.belongsTo('user', Collection.fields["user_id"], User);
-u = User.find("1", false)
-u.collections.findOne(false).user.findOne(false).user.findOne(false)
+Collection.toMany('items', Item, Item.fields['collection_id']);
+Item.belongsTo('collections',Item.fields["collection_id"], Collection);
 
 u = User.create({email: "a@b", user_type: 0}, false)
-; u.destroySync()
+u.destroySync()
 
-Collection.items  = new ToMany(Collection, 'id', Item, 'collection_id');
+u = User.find("1", false)
+u.collections.findOne(false).user.findOne(false)
+u = User.where('id = 1').findOne(false);
 
-Collection.prototype.user = Collection.user = new BelongsTo(Collection, 'user_id', User, 'id');
+User.find("1", function(err, res) { console.log(res); });
 
-q = User.query().where('id = 675011 ');
-
-x = q.executeSync()[0];
-
-/* q = x.collections().query();
-console.log(q.toSql());
-
-q = User.collections().query();
-console.log(q.toSql());
-
-c = q.take(1).executeSync()[0];
-console.log(c instanceof Collection);
-
-console.log(c.user().query().toSql());
-
-q = Collection.user().query();
-console.log(q.toSql());
-
-q = Collection.items().query();
-console.log(q.toSql());
-
-
-q = x.collections().items().query();
-console.log(q.toSql());
-
-*/
+u.collections.where("name like '%book'").all(function(err, res) { console.log(res); })
