@@ -8,6 +8,7 @@ try {
     var reporter = require('nodeunit').reporters.default;
 }
 catch(e) {
+  console.log(e)
     var util = require('util');
     util.puts("Cannot find nodeunit module.");
     util.puts("You can download submodules for this project by doing:");
