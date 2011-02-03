@@ -1,18 +1,18 @@
-var Table = require('table').Table;
+var Model = require('table').Model;
 var Query = require('query').Query;
 var User = require('./user').User;
 var Collection = require('./collection').Collection;
 
-exports.testTableObject = function(test) {
+exports.testModelObject = function(test) {
   test.expect(3);
-  test.ok(User instanceof Table, "User is an instance of Table Class.");
+  test.ok(User instanceof Model, "User is an instance of Model Class.");
   test.ok(User instanceof Query, "User is an instance of Query Class.");
-  test.equals(User.constructor, Table, "User constructor is Table class.");
+  test.equals(User.constructor, Model, "User constructor is Model class.");
 
   test.done();
 };
 
-exports.testTableObjectCreation = function(test) {
+exports.testModelObjectCreation = function(test) {
   test.expect(4);
   test.equals(User.tableName, "users", "The table name is stored correctly.");
   test.equals(User.primaryKey, User.fields["id"], "The default primary key field is: id.");
@@ -22,20 +22,20 @@ exports.testTableObjectCreation = function(test) {
   test.done();
 };
 
-exports.testTableQueryObject = function(test) {
+exports.testModelQueryObject = function(test) {
   test.expect(2);
   test.ok(User.query() instanceof Query, "Returns an instance of query object.");
   test.ok(User.query()._from.indexOf(User) != -1, "The query contains the table as form object.");
   test.done();
 };
 
-exports.testTableToString = function(test) {
+exports.testModelToString = function(test) {
   test.expect(1);
-  test.ok(User.toString(), "<Table:{users}>", "Returns correct string representation.");
+  test.ok(User.toString(), "<Model:{users}>", "Returns correct string representation.");
   test.done();
 };
 
-exports.testTableNewObjectConstruction = function(test) {
+exports.testModelNewObjectConstruction = function(test) {
   test.expect(2);
   var obj = new User();
   test.ok(obj instanceof User, "Returns an instance of Model.");
@@ -43,30 +43,30 @@ exports.testTableNewObjectConstruction = function(test) {
   test.done();
 };
 
-exports.testTableallSync = function(test) {
+exports.testModelallSync = function(test) {
   test.expect(2)
   test.equals(User.all(false).length, 5, "Return length should be correct")
   test.ok(User.all(false) instanceof Array, "Return length should be correct")
   test.done();
 };
 
-exports.testTableall = function(test) {
+exports.testModelall = function(test) {
   test.expect(1);
   User.all(function(err, res){test.ok(res instanceof Array, "correct"); test.done(); });
 };
 
-exports.testTablefindOneSync = function(test) {
+exports.testModelfindOneSync = function(test) {
   test.expect(1);
   test.equals(User.findOne(false).first_name, "sandip", "Return object with matching name")
   test.done();
 };
 
-exports.testTablefindOne = function(test) {
+exports.testModelfindOne = function(test) {
   test.expect(1);
   User.findOne(function(err, res) {test.equals(res.first_name, "sandip", "Return object with matching name"); test.done(); });
 };
 
-exports.testTablefindSync = function(test) {
+exports.testModelfindSync = function(test) {
   test.expect(4);
   test.equals(User.find("1", false).first_name, "sandip", "Return object with matching name");
   test.ok(User.find("1", false) instanceof Object, "Return an instance of Object");
@@ -75,7 +75,7 @@ exports.testTablefindSync = function(test) {
   test.done();
 };
 
-exports.testTablefind = function(test) {
+exports.testModelfind = function(test) {
   test.expect(2);
   User.find("1", function(err, res){
     test.equals(res.first_name, "sandip","Return object with matching name");
