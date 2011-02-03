@@ -1,5 +1,7 @@
 var cp = require('./setup').RDXTestConnectionPool();
-var Model = require('table').Model;
+var Model = require('model');
+
+
 var Item = require('./item').Item;
 
 var Collection = exports.Collection = new Model(cp, 'collections');

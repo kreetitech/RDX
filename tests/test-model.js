@@ -1,5 +1,6 @@
-var Model = require('table').Model;
-var Query = require('query').Query;
+var Model = require('model');
+var Query = require('query');
+
 var User = require('./user').User;
 var Collection = require('./collection').Collection;
 

@@ -1,5 +1,5 @@
-var Query = require('query').Query;
-var Field = require('field').Field;
+var Query = require('query');
+var Field = require('field');
 
 var Collection = require('./collection').Collection;
 var User = require('./user').User;
