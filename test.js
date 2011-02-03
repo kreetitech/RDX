@@ -5,7 +5,7 @@ require.paths.push(__dirname + '/deps');
 require.paths.push(__dirname + '/lib');
 
 try {
-    var reporter = require('nodeunit').reporters.default;
+  var reporter = require('nodeunit/reporters').default;
 }
 catch(e) {
   console.log(e)
