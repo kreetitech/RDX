@@ -1,9 +1,8 @@
 var Query = require('query');
 var Field = require('field');
 
-var Collection = require('./collection').Collection;
-var User = require('./user').User;
-
+var Collection = require('./index').Collection;
+var User = require('./index').User;
 
 exports.testQueryWhereSync = function(test) {
   test.expect(3);

@@ -1,23 +1,13 @@
-__dirname = '.'
-require.paths.push(__dirname);
-//require.paths.push(__dirname + '/..');
-//require.paths.push(__dirname + '/../deps');
-require.paths.push(__dirname + '/deps');
-require.paths.push(__dirname + '/lib');
+var rdx = require('rdx')
+var cfg = {  adapter: 'mysql-libmysqlclient',
+  host: "localhost",
+  database: "test",
+          };
 
-var RDX = require('index').RDX;
-var cfg = require("tests/fixtures/config").cfg;
-
-var ConnectionPool = RDX.ConnectionPool;
-var Model = RDX.Model;
-var Query = RDX.Query;
-var ToMany = RDX.ToMany;
-var BelongsTo = RDX.BelongsTo;
-
-var cp = new ConnectionPool(cfg);
-var User = new Model(cp, 'users');
-var Collection = new Model(cp, 'collections');
-var Item = new Model(cp, 'items');
+var cp = new rdx.ConnectionPool(cfg);
+var User = new rdx.Model(cp, 'users');
+var Collection = new rdx.Model(cp, 'collections');
+var Item = new rdx.Model(cp, 'items');
 
 User.toMany('collections', Collection, Collection.fields["user_id"]);
 

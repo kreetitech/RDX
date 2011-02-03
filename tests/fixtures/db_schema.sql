@@ -3,7 +3,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
   `first_name` varchar(255) default NULL,
   `last_name` varchar(255) default NULL,
-  `email` varchar(255) default '',
+  `email` varchar(255) default NULL,
   `user_type` int(11) NOT NULL default '0',
   `hashed_password` varchar(40) default NULL,
   `salt` varchar(40) default NULL,

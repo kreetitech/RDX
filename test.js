@@ -20,6 +20,6 @@ catch(e) {
 }
 
 process.chdir(__dirname);
-reporter.run(['tests/test-model.js','tests/test-query.js', 'tests/test-field.js']);
+reporter.run(['tests/test-model.js','tests/test-query.js', 'tests/test-field.js', 'tests/test-to-many.js', 'tests/test-belongs-to.js']);
 
 

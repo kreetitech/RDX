@@ -1,8 +1,8 @@
 var Model = require('model');
 var Query = require('query');
 
-var User = require('./user').User;
-var Collection = require('./collection').Collection;
+var User = require('./index').User;
+var Collection = require('./index').Collection;
 
 exports.testModelObject = function(test) {
   test.expect(3);

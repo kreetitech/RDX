@@ -1,4 +1,4 @@
-var User = require('./user').User;
+var User = require('./index').User;
 
 exports.testFieldObjectCreation = function(test) {
   test.expect(5);

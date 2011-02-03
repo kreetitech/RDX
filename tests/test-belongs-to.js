@@ -1,7 +1,5 @@
-var User = require('./user').User;
-var Collection = require('./collection').Collection;
-
-Collection.belongsTo('users',Collection.fields["user_id"], User);
+var User = require('./index').User;
+var Collection = require('./index').Collection;
 
 exports.testBelongsTo = function(test) {
   test.expect(1);
