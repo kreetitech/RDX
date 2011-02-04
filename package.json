@@ -21,7 +21,7 @@
     }
   ]
 , "dependencies" : {
-    "mysql-libmysqlclient": ">=1.1.x",
+    "mysql-libmysqlclient": ">=1.1.0",
   }
 , "main" : "./index"
 , "engines" : { "node" : ">=0.2.5" }
